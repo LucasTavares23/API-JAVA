@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  db:
+    container_name: mysql_db
+    image: mysql:8.0.31
+    platform: linux/x86_64
+    restart: always
+    ports:
+      # Garanta que não haverá conflitos de porta com um banco que esteja
+      # rodando localmente
+      - 3307:3306
+      - 33070:33060
+    expose:
+      - 3307
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+    volumes:
+      - ./my-db:/var/lib/mysql
